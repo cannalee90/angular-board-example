@@ -1,16 +1,28 @@
-<div class='container article'>
-    <div class='row'>
-      <div class='col'></div>
-      <div class='col-6'>
-        <h1>this is list</h1>
-        <ul>
-          <li *ngFor="let article of (articles$ | async)">
-            {{article.title}}
-            <p>{{article.content}}</p>
-          </li>
-        </ul>
+<div class='container'>
+  <div class='row'>
+    <div class='col'></div>
+    <div class='col-8'>
+      <div class="card-body">
+        <div class="article-content">
+          <ul class="article-list list-unstyled">
+            <li class='d-flex align-items-center' *ngFor="let article of (articles$ | async).reverse()">
+              <div>
+                <a class='title' routerLink="/article/{{article.id}}">{{article.title}}</a>
+              </div>
+              <div class='creator ml-auto'>
+                {{article.creator}}
+              </div>
+              <div class='createdAt'>
+                08-10
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="article-footer d-flex">
+          <a class="btn btn-outline-dark ml-auto" routerLink='/article/new'>New</a>
+        </div>
       </div>
-      <div class='col'></div>    
     </div>
+    <div class='col'></div>
   </div>
-  
+</div>

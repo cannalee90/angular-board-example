@@ -1,0 +1,52 @@
+.creator {
+  font-size: 11px;
+  color: #666;
+  padding: 10px 15px;
+}
+
+.createdAt {
+  font-size: 11px;
+  color: #666;
+  padding: 10px 15px;
+}
+
+.article-header {
+  border-bottom: 1px solid #eaeaea;
+  margin-bottom: 10px;
+}
+
+.article-header .title {
+  font-size: 25px;
+}
+
+.article-content {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.title  {
+  font-size: 18px;
+  color: #343a40;
+}
+
+.article-footer .btn {
+  border-radius: 0;
+  margin-right: 10px;
+}
+
+.article-list > li {
+  padding: 10px 5px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.article-body {
+  margin-bottom: 15px;
+  padding-bottom: 20px;
+  font-size: 15px;
+  min-height: 100px;
+}
+
+.card-body {
+  background-color: #fff;
+  color: #4d4d4d;
+}

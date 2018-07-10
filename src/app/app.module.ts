@@ -9,7 +9,7 @@ import { createLogger } from 'redux-logger';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
-import { ArticleComponent } from './article/show/article.component';
+import { ShowComponent } from './article/show/show.component';
 import { ListComponent } from './article/list/list.component';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -23,7 +23,7 @@ const epicMiddleWare = createEpicMiddleware();
     AppComponent,
     FooterComponent,
     HeaderComponent,
-    ArticleComponent,
+    ShowComponent,
     ListComponent
   ],
   imports: [
