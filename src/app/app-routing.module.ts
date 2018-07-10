@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, Router } from '@angular/router';
-import { ArticleComponent } from './article/show/article.component';
+import { ShowComponent } from './article/show/show.component';
 import { ListComponent } from './article/list/list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/articles', pathMatch: 'full' },
   { path: 'articles', component: ListComponent },
-  { path: 'article/:id', component: ArticleComponent },
+  { path: 'article/:id', component: ShowComponent },
 ];
 
 @NgModule({
