@@ -21,7 +21,7 @@
           <div class='article-footer d-flex'>
             <a class='btn btn-outline-dark ml-auto' routerLink='/article/new'>New</a>
             <a class='btn btn-outline-dark' routerLink='/article/{{(article$ | async).id}}/edit'>Edit</a>
-            <a class='btn btn-outline-dark' routerLink='/article/{{(article$ | async).id}}/delete'>Delete</a>
+            <a class='btn btn-outline-dark' (click)='removeArticle()'>Delete</a>
           </div>
         </div>
       </div>

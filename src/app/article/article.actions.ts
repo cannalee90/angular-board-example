@@ -18,11 +18,23 @@ export class ArticleActions {
   static readonly FETCH_ARTICLE_SUCCESS = 'FETCH_ARTICLE_SUCCESS';
   static readonly FETCH_ARTICLE_ERROR = 'FETCH_ARTICLE_ERROR';
 
+  static readonly REMOVE_ARTICLE = 'REMOVE_ARTICLE';
+  static readonly REMOVE_ARTILCE_SUCCESS = 'REMOVE_ARTICLE_SUCCESS';
+  static readonly REMOVE_ARTILCE_ERROR = 'REMOVE_ARITLCE_ERROR';
+
   fetchArticles(): void {
     this.ngRedux.dispatch({ type: ArticleActions.FETCH_ARTICLES });
   }
 
   fetchArticle(id: string): void {
     this.ngRedux.dispatch({ type: ArticleActions.FETCH_ARTICLE, payload: {id}});
+  }
+
+  removeArticle(id: string): void {
+    this.ngRedux.dispatch({
+      type: ArticleActions.REMOVE_ARTICLE,
+      payload: { id },
+      meta: { nextUrl: '/articles' }
+    });
   }
 }

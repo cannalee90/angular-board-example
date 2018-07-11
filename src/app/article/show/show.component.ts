@@ -27,4 +27,8 @@ export class ShowComponent implements OnInit {
   ngOnInit() {
     this.actions.fetchArticle(this.currentId);
   }
+
+  removeArticle() {
+    this.actions.removeArticle(this.currentId);
+  }
 }
