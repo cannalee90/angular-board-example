@@ -1,24 +1,30 @@
 import { Injectable } from '@angular/core';
-import { mapTo, delay } from 'rxjs/operators';
+import { mapTo, delay, switchMap, map, tap } from 'rxjs/operators';
 import { ofType, combineEpics } from 'redux-observable';
-
+import { HttpClient } from '@angular/common/http';
+import { ArticleActions } from './article.actions';
 @Injectable()
 export class ArticleEpics {
-  static readonly FETCH_ARTICLES = 'FETCH_ARTICLES';
-  static readonly FETCH_ARTICLES_SUCCESS = 'FETCH_ARTICLES_SUCCESS';
-  static readonly FETCH_ARTICLES_ERROR = 'FETCH_ARTICLES_ERROR';
+  private articleUrl = 'api/articles';
 
-  constructor() {}
+  constructor(private http: HttpClient) {
+  }
 
   articleRootEpic() {
-    return combineEpics(this.fetchArticles);
+    return combineEpics(
+      this.fetchArticles.bind(this),
+    );
   }
 
   fetchArticles (action$: any) {
     return action$.pipe(
-      ofType(ArticleEpics.FETCH_ARTICLES),
-      delay(1000),
-      mapTo({type: ArticleEpics.FETCH_ARTICLES_SUCCESS}),
+      ofType(ArticleActions.FETCH_ARTICLES),
+      switchMap(action =>
+        this.http.get<any[]>(this.articleUrl).pipe(
+          map(response => ({type: ArticleActions.FETCH_ARTICLES_SUCCESS, payload: response}))
+        )
+      ),
+      tap(res => console.log('article finished', res)),
     );
   }
 }

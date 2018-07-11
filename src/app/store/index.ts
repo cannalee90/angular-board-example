@@ -21,7 +21,7 @@ export function rootReducer(state: IAppState = INITIAL_STATE, action) {
     case ArticleActions.FETCH_ARTICLES_SUCCESS:
       return {
         ...state,
-        articles: dummyArticles,
+        articles: action.payload,
       };
   }
   return state;

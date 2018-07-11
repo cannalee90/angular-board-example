@@ -14,6 +14,10 @@ export class ArticleActions {
   static readonly FETCH_ARTICLES_SUCCESS = 'FETCH_ARTICLES_SUCCESS';
   static readonly FETCH_ARTICLES_ERROR = 'FETCH_ARTICLES_ERROR';
 
+  static readonly FETCH_ARTICLE = 'FETCH_ARTICLE';
+  static readonly FETCH_ARTICLE_SUCCESS = 'FETCH_ARTICLE_SUCCESS';
+  static readonly FETCH_ARTICLE_ERROR = 'FETCH_ARTICLE_ERROR';
+
   fetchArticles(): void {
     this.ngRedux.dispatch({ type: ArticleActions.FETCH_ARTICLES });
   }
