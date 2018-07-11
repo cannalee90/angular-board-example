@@ -22,6 +22,10 @@ export class ArticleActions {
   static readonly REMOVE_ARTILCE_SUCCESS = 'REMOVE_ARTICLE_SUCCESS';
   static readonly REMOVE_ARTILCE_ERROR = 'REMOVE_ARITLCE_ERROR';
 
+  static readonly POST_ARTICLE = 'POST_ARTICLE';
+  static readonly POST_ARTICLE_SUCCESS = 'POST_ARTICLE_SUCCESS';
+  static readonly POST_ARTICLE_ERROR = 'POST_ARTICLE_ERROR';
+
   fetchArticles(): void {
     this.ngRedux.dispatch({ type: ArticleActions.FETCH_ARTICLES });
   }
@@ -34,6 +38,14 @@ export class ArticleActions {
     this.ngRedux.dispatch({
       type: ArticleActions.REMOVE_ARTICLE,
       payload: { id },
+      meta: { nextUrl: '/articles' }
+    });
+  }
+
+  postArticle(article: IArticle): void {
+    this.ngRedux.dispatch({
+      type: ArticleActions.POST_ARTICLE,
+      payload: { article },
       meta: { nextUrl: '/articles' }
     });
   }

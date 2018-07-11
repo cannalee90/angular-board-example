@@ -21,6 +21,7 @@ export class ArticleEpics {
       this.fetchArticles.bind(this),
       this.fetchArticle.bind(this),
       this.removeArticle.bind(this),
+      this.postArticle.bind(this),
     );
   }
 
@@ -62,6 +63,24 @@ export class ArticleEpics {
           map(res => ({type: ArticleActions.REMOVE_ARTILCE_SUCCESS})),
         );
       }),
+    );
+  }
+
+  postArticle (action$: any) {
+    return action$.pipe(
+      ofType(ArticleActions.POST_ARTICLE),
+      switchMap((action: any) => {
+        return this.http.post<any[]>(this.articleUrl, action.payload.article, httpOptions).pipe(
+          map(res => {
+            return ({type: ArticleActions.POST_ARTICLE_SUCCESS, payload: action.payload});
+          }),
+          tap(() => {
+            if (action.meta.nextUrl) {
+              this.router.navigate([action.meta.nextUrl]);
+            }
+          }),
+        );
+      })
     );
   }
 }
