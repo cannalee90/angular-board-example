@@ -12,7 +12,7 @@
               {{(article$ | async).creator}}
             </div>
             <div class="createdAt">
-              08-10
+              {{(article$ | async).createdAt | date:'MM-dd'}}
             </div>
           </div>
           <div class='article-body'>
