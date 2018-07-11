@@ -29,9 +29,13 @@
   color: #343a40;
 }
 
-.article-footer .btn {
+.form-footer .btn {
   border-radius: 0;
-  margin-right: 10px;
+  margin-right: 5px;
+}
+
+.form-footer .btn:last-child {
+  margin-right: 0;
 }
 
 .article-list > li {
@@ -49,4 +53,12 @@
 .card-body {
   background-color: #fff;
   color: #4d4d4d;
+}
+
+.article-form textarea {
+  resize: none;
+}
+
+.error {
+  color:#dc3545 !important;
 }

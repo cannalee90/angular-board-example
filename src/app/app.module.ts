@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { FormsModule } from '@angular/forms';
 import { InMemoryDataService } from './in-memory-data.service';
 
 import { NgReduxModule, NgRedux, DevToolsExtension } from '@angular-redux/store';
@@ -14,6 +15,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { ShowComponent } from './article/show/show.component';
 import { ListComponent } from './article/list/list.component';
+import { NewComponent } from './article/new/new.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -27,7 +29,8 @@ const epicMiddleWare = createEpicMiddleware();
     FooterComponent,
     HeaderComponent,
     ShowComponent,
-    ListComponent
+    ListComponent,
+    NewComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,8 @@ const epicMiddleWare = createEpicMiddleware();
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
-    )
+    ),
+    FormsModule
   ],
   providers: [ArticleEpics],
   bootstrap: [AppComponent]
