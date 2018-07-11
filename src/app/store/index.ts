@@ -21,7 +21,10 @@ export const INITIAL_STATE: IAppState = {
 export function rootReducer(state: IAppState = INITIAL_STATE, action) {
   switch (action.type) {
     case ArticleActions.FETCH_ARTICLES:
-      return state;
+      return {
+        ...state,
+        articles: [],
+      };
     case ArticleActions.FETCH_ARTICLES_SUCCESS:
       return {
         ...state,
@@ -30,6 +33,7 @@ export function rootReducer(state: IAppState = INITIAL_STATE, action) {
     case ArticleActions.FETCH_ARTICLE:
       return {
         ...state,
+        article: INITIAL_STATE.article,
       };
     case ArticleActions.FETCH_ARTICLE_SUCCESS:
       return {
