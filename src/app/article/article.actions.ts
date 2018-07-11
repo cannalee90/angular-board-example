@@ -22,4 +22,7 @@ export class ArticleActions {
     this.ngRedux.dispatch({ type: ArticleActions.FETCH_ARTICLES });
   }
 
+  fetchArticle(id: string): void {
+    this.ngRedux.dispatch({ type: ArticleActions.FETCH_ARTICLE, payload: {id}});
+  }
 }

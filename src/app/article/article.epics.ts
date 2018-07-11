@@ -13,6 +13,7 @@ export class ArticleEpics {
   articleRootEpic() {
     return combineEpics(
       this.fetchArticles.bind(this),
+      this.fetchArticle.bind(this),
     );
   }
 
@@ -27,4 +28,17 @@ export class ArticleEpics {
       tap(res => console.log('article finished', res)),
     );
   }
+
+  fetchArticle (action$: any) {
+    return action$.pipe(
+      ofType(ArticleActions.FETCH_ARTICLE),
+      switchMap((action: any) => {
+        const url = `${this.articleUrl}/${action.payload.id}`;
+        return this.http.get<any[]>(url).pipe(
+          map(response => ({type: ArticleActions.FETCH_ARTICLE_SUCCESS, payload: response}))
+        );
+      })
+    );
+  }
+
 }
