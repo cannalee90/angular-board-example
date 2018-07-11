@@ -6,22 +6,22 @@
         <div class='article-content'>
           <div class='article-header align-items-center d-flex'>
             <div class="title">
-              {{article.title}}
+              {{(article$ | async).title}}
             </div>
             <div class="ml-auto creator">
-              {{article.creator}}
+              {{(article$ | async).creator}}
             </div>
             <div class="createdAt">
               08-10
             </div>
           </div>
           <div class='article-body'>
-            {{article.content}}
+            {{(article$ | async).content}}
           </div>
           <div class='article-footer d-flex'>
             <a class='btn btn-outline-dark ml-auto' routerLink='/article/new'>New</a>
-            <a class='btn btn-outline-dark' routerLink='/article/{{article.id}}/edit'>Edit</a>
-            <a class='btn btn-outline-dark' routerLink='/article/{{article.id}}/delete'>Delete</a>
+            <a class='btn btn-outline-dark' routerLink='/article/{{(article$ | async).id}}/edit'>Edit</a>
+            <a class='btn btn-outline-dark' routerLink='/article/{{(article$ | async).id}}/delete'>Delete</a>
           </div>
         </div>
       </div>
