@@ -43,6 +43,11 @@
   border-bottom: 1px solid #eaeaea;
 }
 
+.article-list .creator {
+  width: 100px;
+  text-align: center;
+}
+
 .article-body {
   margin-bottom: 15px;
   padding-bottom: 20px;
@@ -61,4 +66,13 @@
 
 .error {
   color:#dc3545 !important;
+}
+
+.article-footer .btn {
+  border-radius: 0;
+  margin-right: 5px;
+}
+
+.article-footer .btn:last-child {
+  margin-right: 0;
 }
