@@ -83,4 +83,22 @@ export class ArticleEpics {
       })
     );
   }
+
+  editArticle (action$: any) {
+    return action$.pipe(
+      ofType(ArticleActions.EDIT_ARTICLE),
+      switchMap((action: any) => {
+        return this.http.post<any[]>(this.articleUrl, action.payload.article, httpOptions).pipe(
+          map(res => {
+            return ({type: ArticleActions.EDIT_ARTICLE_SUCCESS, payload: action.payload});
+          }),
+          tap(() => {
+            if (action.meta.nextUrl) {
+              this.router.navigate([action.meta.nextUrl]);
+            }
+          })
+        );
+      })
+    );
+  }
 }
