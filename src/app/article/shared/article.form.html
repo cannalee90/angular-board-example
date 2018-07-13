@@ -1,0 +1,70 @@
+<form class='article-form' #articleForm='ngForm' (ngSubmit)='submit(true)'>
+  <div class='form-group'>
+    <label for='title'>Title</label>
+    <input
+      required
+      #modelTitle='ngModel'
+      [(ngModel)]='model.title'
+      name='title'
+      type='text'
+      class='form-control'
+      id='title'
+      aria-describedby='titleHelp'/>
+    <small
+      *ngIf='(!modelTitle.valid && modelTitle.touched)'
+      class='form-text text-muted error' >
+      required
+    </small>
+  </div>
+  <div class='form-group'>
+    <label for='creator'>Creator</label>
+    <input
+      required
+      #modelCreator='ngModel'
+      [(ngModel)]='model.creator'
+      name='creator'
+      type='text'
+      class='form-control'
+      id='creator'
+      aria-describedby='creatorHelp'/>
+    <small
+      *ngIf='(!modelCreator.valid && modelCreator.touched)'
+      class='form-text text-muted error' >
+      required
+    </small>
+  </div>
+  <div class='form-group'>
+    <label for='content'>Content</label>
+    <textarea
+      required
+      #modelContent='ngModel'
+      [(ngModel)]='model.content'
+      name='content'
+      class='form-control'
+      id='content'
+      rows='3'>
+    </textarea>
+    <small
+      *ngIf='(!modelContent.valid && modelContent.touched)'
+      class='form-text error' >
+      required
+    </small>
+  </div>
+  <div class='form-group form-footer d-flex'>
+    <button
+      class='btn btn-outline-dark ml-auto'
+      type='submit'
+      [disabled]='!articleForm.form.valid'>
+      Save
+    </button>
+    <button
+      class='btn btn-outline-dark'
+      (click)='articleForm.reset()'
+      [disabled]='!articleForm.form.dirty'>
+      Clear
+    </button>
+    <a class='btn btn-outline-dark' routerLink='/articles'>
+      List
+    </a>
+  </div>
+</form>
