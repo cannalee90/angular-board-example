@@ -4,6 +4,7 @@ import { ShowComponent } from './article/show/show.component';
 import { ListComponent } from './article/list/list.component';
 import { NewComponent } from './article/new/new.component';
 import { EditComponent } from './article/edit/edit.component';
+import { ErrorPageComponent } from './shared/error.page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/articles', pathMatch: 'full' },
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'article/new', component: NewComponent },
   { path: 'article/:id', component: ShowComponent },
   { path: 'article/:id/edit', component: EditComponent },
+  { path: '**', component: ErrorPageComponent },
 ];
 
 @NgModule({

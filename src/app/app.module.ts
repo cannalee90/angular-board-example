@@ -18,6 +18,7 @@ import { ListComponent } from './article/list/list.component';
 import { NewComponent } from './article/new/new.component';
 import { EditComponent } from './article/edit/edit.component';
 import { ArticleFormComponent } from './article/shared/article.form';
+import { ErrorPageComponent } from './shared/error.page.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -35,6 +36,7 @@ const epicMiddleWare = createEpicMiddleware();
     NewComponent,
     EditComponent,
     ArticleFormComponent,
+    ErrorPageComponent,
   ],
   imports: [
     BrowserModule,
