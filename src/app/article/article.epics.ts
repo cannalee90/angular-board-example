@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { mapTo, delay, switchMap, map, tap, filter } from 'rxjs/operators';
-import { ofType, combineEpics } from 'redux-observable';
+import { ofType, combineEpics, ActionsObservable } from 'redux-observable';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ArticleActions } from './article.actions';
 
@@ -26,7 +26,7 @@ export class ArticleEpics {
     );
   }
 
-  fetchArticles (action$: any) {
+  fetchArticles (action$: ActionsObservable<any>) {
     return action$.pipe(
       ofType(ArticleActions.FETCH_ARTICLES),
       switchMap(action =>
@@ -38,7 +38,7 @@ export class ArticleEpics {
     );
   }
 
-  fetchArticle (action$: any) {
+  fetchArticle (action$: ActionsObservable<any>) {
     return action$.pipe(
       ofType(ArticleActions.FETCH_ARTICLE),
       switchMap((action: any) => {
@@ -50,7 +50,7 @@ export class ArticleEpics {
     );
   }
 
-  removeArticle (action$: any, state$: any) {
+  removeArticle (action$: ActionsObservable<any>, state$: any) {
     return action$.pipe(
       ofType(ArticleActions.REMOVE_ARTICLE),
       switchMap((action: any) => {
@@ -67,7 +67,7 @@ export class ArticleEpics {
     );
   }
 
-  postArticle (action$: any) {
+  postArticle (action$: ActionsObservable<any>) {
     return action$.pipe(
       ofType(ArticleActions.POST_ARTICLE),
       switchMap((action: any) => {
@@ -85,7 +85,7 @@ export class ArticleEpics {
     );
   }
 
-  editArticle (action$: any) {
+  editArticle (action$: ActionsObservable<any>) {
     return action$.pipe(
       ofType(ArticleActions.EDIT_ARTICLE),
       switchMap((action: any) => {
