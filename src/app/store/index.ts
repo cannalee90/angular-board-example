@@ -4,6 +4,7 @@ import { ArticleActions } from '../article/article.actions';
 export interface IAppState {
   articles: IArticle[];
   article: IArticle;
+  error?: any;
 }
 
 export const INITIAL_STATE: IAppState = {
@@ -16,6 +17,7 @@ export const INITIAL_STATE: IAppState = {
     content: '',
     title: '',
   },
+  error: null,
 };
 
 export function rootReducer(state: IAppState = INITIAL_STATE, action) {
@@ -29,6 +31,12 @@ export function rootReducer(state: IAppState = INITIAL_STATE, action) {
       return {
         ...state,
         articles: action.payload,
+      };
+    case ArticleActions.FETCH_ARTICLES_ERROR:
+      console.log(action);
+      return {
+        ...state,
+        error: action.error,
       };
     case ArticleActions.FETCH_ARTICLE:
       return {
