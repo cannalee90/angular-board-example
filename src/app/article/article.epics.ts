@@ -22,6 +22,7 @@ export class ArticleEpics {
       this.fetchArticle.bind(this),
       this.removeArticle.bind(this),
       this.postArticle.bind(this),
+      this.editArticle.bind(this),
     );
   }
 

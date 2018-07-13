@@ -16,6 +16,8 @@ import { HeaderComponent } from './shared/header/header.component';
 import { ShowComponent } from './article/show/show.component';
 import { ListComponent } from './article/list/list.component';
 import { NewComponent } from './article/new/new.component';
+import { EditComponent } from './article/edit/edit.component';
+
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -30,7 +32,8 @@ const epicMiddleWare = createEpicMiddleware();
     HeaderComponent,
     ShowComponent,
     ListComponent,
-    NewComponent
+    NewComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,
