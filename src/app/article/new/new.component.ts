@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { select } from '@angular-redux/store';
-import { Observable, select } from 'redux-observable';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { ArticleActions } from '../article.actions';
 import { IArticle, Article } from '../../models';
@@ -10,10 +11,11 @@ import { IArticle, Article } from '../../models';
   templateUrl: './new.component.html',
   styleUrls: ['../article.css']
 })
-export class NewComponent implements OnInit {
+export class NewComponent implements OnInit, OnDestroy {
 
   model: IArticle = new Article(0, '', '', '', new Date(), new Date());
   @select() readonly articles$: Observable<IArticle[]>;
+  private unsubscribe$ = new Subject();
 
   constructor(
     private actions: ArticleActions
@@ -22,11 +24,18 @@ export class NewComponent implements OnInit {
   ngOnInit() {
     this.actions.fetchArticles();
     this.articles$
-      .take(1)
+      .pipe(
+        takeUntil(this.unsubscribe$)
+      )
       .subscribe((articles: IArticle[]) => {
         const nextId = (articles.length === 0) ? 1 : articles[articles.length - 1].id + 1;
         this.model.id = nextId;
       });
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
   onSubmit() {
