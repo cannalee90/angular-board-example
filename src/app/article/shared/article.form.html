@@ -58,6 +58,7 @@
       Save
     </button>
     <button
+      *ngIf='parentName === "new"'
       class='btn btn-outline-dark'
       (click)='articleForm.reset()'
       [disabled]='!articleForm.form.dirty'>

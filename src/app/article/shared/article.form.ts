@@ -10,6 +10,7 @@ import { Article } from '../../models';
 export class ArticleFormComponent {
 
   @Input() model: Article;
+  @Input() parentName: string;
   @Output() submitted = new EventEmitter<boolean>();
 
   submit(formSubmit: boolean) {
