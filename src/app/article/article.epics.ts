@@ -4,6 +4,7 @@ import { mapTo, delay, switchMap, map, tap, filter } from 'rxjs/operators';
 import { ofType, combineEpics, ActionsObservable } from 'redux-observable';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ArticleActions } from './article.actions';
+import { IArticle } from '../models';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -30,7 +31,7 @@ export class ArticleEpics {
     return action$.pipe(
       ofType(ArticleActions.FETCH_ARTICLES),
       switchMap(action =>
-        this.http.get<any[]>(this.articleUrl).pipe(
+        this.http.get<IArticle[]>(this.articleUrl).pipe(
           map(response => ({type: ArticleActions.FETCH_ARTICLES_SUCCESS, payload: response}))
         )
       ),
@@ -43,7 +44,7 @@ export class ArticleEpics {
       ofType(ArticleActions.FETCH_ARTICLE),
       switchMap((action: any) => {
         const url = `${this.articleUrl}/${action.payload.id}`;
-        return this.http.get<any[]>(url).pipe(
+        return this.http.get<IArticle[]>(url).pipe(
           map(response => ({type: ArticleActions.FETCH_ARTICLE_SUCCESS, payload: response}))
         );
       })
@@ -55,7 +56,7 @@ export class ArticleEpics {
       ofType(ArticleActions.REMOVE_ARTICLE),
       switchMap((action: any) => {
         const url = `${this.articleUrl}/${action.payload.id}`;
-        return this.http.delete<any[]>(url, httpOptions).pipe(
+        return this.http.delete<IArticle[]>(url, httpOptions).pipe(
           tap((res) => {
             if (action.meta.nextUrl) {
               this.router.navigate([action.meta.nextUrl]);
@@ -71,7 +72,7 @@ export class ArticleEpics {
     return action$.pipe(
       ofType(ArticleActions.POST_ARTICLE),
       switchMap((action: any) => {
-        return this.http.post<any[]>(this.articleUrl, action.payload.article, httpOptions).pipe(
+        return this.http.post<IArticle[]>(this.articleUrl, action.payload.article, httpOptions).pipe(
           map(res => {
             return ({type: ArticleActions.POST_ARTICLE_SUCCESS, payload: action.payload});
           }),
@@ -89,7 +90,7 @@ export class ArticleEpics {
     return action$.pipe(
       ofType(ArticleActions.EDIT_ARTICLE),
       switchMap((action: any) => {
-        return this.http.post<any[]>(this.articleUrl, action.payload.article, httpOptions).pipe(
+        return this.http.post<IArticle[]>(this.articleUrl, action.payload.article, httpOptions).pipe(
           map(res => {
             return ({type: ArticleActions.EDIT_ARTICLE_SUCCESS, payload: action.payload});
           }),
