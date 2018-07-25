@@ -1,10 +1,11 @@
 import { IArticle } from '../models';
 import { ArticleActions } from '../article/article.actions';
-
+import { createSelector } from 'reselect';
 export interface IAppState {
   articles: IArticle[];
   article: IArticle;
   error?: any;
+  filteredArticles: IArticle[];
 }
 
 export const INITIAL_STATE: IAppState = {
@@ -18,9 +19,20 @@ export const INITIAL_STATE: IAppState = {
     title: '',
   },
   error: null,
+  filteredArticles: [],
 };
 
-export function rootReducer(state: IAppState = INITIAL_STATE, action) {
+export const getContainDArticle = createSelector<IAppState, IArticle[], IArticle[]>(
+  state => state.articles,
+  (articles) => {
+    const filtered = articles.filter((article) => article.title.includes('D'));
+    return [
+      ...filtered,
+    ];
+  }
+)
+
+export function rootReducer(state: IAppState = INITIAL_STATE, action): IAppState {
   switch (action.type) {
     case ArticleActions.FETCH_ARTICLES:
       return {
@@ -31,9 +43,9 @@ export function rootReducer(state: IAppState = INITIAL_STATE, action) {
       return {
         ...state,
         articles: action.payload,
+        filteredArticles: action.paylaod,
       };
     case ArticleActions.FETCH_ARTICLES_ERROR:
-      console.log(action);
       return {
         ...state,
         error: action.error,
